@@ -7,7 +7,7 @@ from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from werkzeug.security import generate_password_hash, check_password_hash
 from base64 import b64encode
-
+from flask_jwt_extended import create_access_token,jwt_required, get_jwt_identity
 
 api = Blueprint('api', __name__)
 
@@ -30,9 +30,8 @@ def check_password(hash_password, password, salt):
     return check_password_hash(hash_password, f"{password}{salt}")
     
 
-
-
 @api.route('/user', methods=['POST'])
+@jwt_required()
 def add_user():
     if request.method == 'POST':
         body = request.json
@@ -72,12 +71,21 @@ def login():
        
         if login_user:
             if check_password(login_user.password, password, login_user.salt):
-                print("este pana tiene permisos")
-                #crear el token y responder el token
+                #creamos el token
+                bubulala = create_access_token(identity=login_user.id)
+                return jsonify({'token':bubulala})
             else:
                 return jsonify('Bad credentials'), 400
-           
-            # return jsonify('usted esta logueado'), 200
         else:
             return jsonify('Bad credentials'), 400
     return jsonify('todo bien'), 201
+
+
+@api.route('/user', methods=['GET'])
+@jwt_required()
+def all_user():
+    all_user = User.query.all()
+    user_id = User.query.get(get_jwt_identity())
+    print(user_id.serialize())
+
+    return jsonify(list(map(lambda user: user.serialize(), all_user)))
