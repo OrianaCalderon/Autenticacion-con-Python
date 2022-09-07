@@ -10,21 +10,39 @@ export const Navbar = () => {
         <Link to="/">
           <span className="navbar-brand mb-0 h1">React Boilerplate</span>
         </Link>
-        <div className="ml-auto">
-          <Link to="/register">Regístrarse</Link>
-        </div>
-        <div className="ml-auto">
-          <Link to="/login">Ingresar</Link>
-        </div>
-        <div className="ml-auto">
-          <button
-            onClick={() => {
-              actions.logout();
-            }}
-          >
-            Salir
+        <div className="btn-group" role="group">
+          <button id="btnGroupDrop1" type="button" className="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            View more
           </button>
+          <ul className="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <li>
+              <div className="ml-auto text-center">
+                <Link to="/register">Regístrarse</Link>
+              </div>
+            </li>
+            <li>
+              <div className="ml-auto text-center">
+                <Link to="/login">Ingresar</Link>
+              </div>
+            </li>
+            <li>
+              <div className="ml-auto">
+                <button className="btn btn-outline-dark w-100"
+                  onClick={() => {
+                  actions.logout();
+                }}
+                >
+                Salir
+                </button>
+            
+              </div>
+            </li>
+          </ul>
         </div>
+
+
+
+
       </div>
     </nav>
   );

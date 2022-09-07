@@ -27,7 +27,7 @@ const Register = () => {
         setUserRegister({ initialState });
         alert("se registro con exito");
       } else {
-        alert("todo mal");
+        alert("Verifica tus credenciales");
       }
     } else {
       console.log("todos los campso son obligatorios");
@@ -37,8 +37,8 @@ const Register = () => {
   return (
     <div className="container mb-5">
       <div className="row justify-content-center">
-        <div className="col-12 col-md-6">
-          <h1 className="text-center">Regístrate aquí</h1>
+        <div className="col-6 col-md-4">
+          <h1 className="text-right my-5">Signup</h1>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Email:</label>
@@ -61,8 +61,10 @@ const Register = () => {
                 value={userRegister.password}
               />
             </div>
+            <div className="d-grid gap-2 d-md-flex justify-content-md-center">
+              <button className="btn btn-outline-primary w-50 my-3 justify-content-center">Registrar</button>
+            </div>
 
-            <button className="btn btn-secondary w-100 my-3">Registrar</button>
           </form>
         </div>
       </div>

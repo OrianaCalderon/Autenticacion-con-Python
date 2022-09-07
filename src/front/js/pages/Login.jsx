@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+
   let initialState = {
     email: "",
     password: "",
@@ -30,7 +31,7 @@ const Login = () => {
       if (response) {
         navigate("/welcome");
       } else {
-        alert("todo mal");
+        alert("Verifica tus credenciales, sino tienes registrate primero");
       }
     } else {
       console.log("todos los campso son obligatorios");
@@ -39,8 +40,8 @@ const Login = () => {
 
   return (
     <div className="row justify-content-center">
-      <div className="col-12 col-md-6">
-        <h1 className="text-center">Ingresar a Deimianland</h1>
+      <div className="col-6 col-md-4">
+        <h1 className="text-right my-5">Login</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Email:</label>
@@ -63,11 +64,16 @@ const Login = () => {
               value={userLogin.password}
             />
           </div>
-
-          <button className="btn btn-success w-100 my-3">Ingresar</button>
+          <div className="d-grid gap-2 d-md-flex justify-content-md-center">
+            <button className="btn btn-outline-primary w-50 my-3 justify-content-center">Ingresar</button>
+          </div>
+          
         </form>
       </div>
     </div>
+
+    
+
   );
 };
 

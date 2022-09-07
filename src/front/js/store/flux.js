@@ -9,7 +9,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       userRegister: async (user) => {
         let store = getStore();
         try {
-          let response = await fetch(`http://localhost:3001/api/user`, {
+          let response = await fetch(`http://localhost:3001/api/signup`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -53,7 +53,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       handleUser: async () => {
         let store = getStore();
         try {
-          let response = await fetch("http://127.0.0.1:3001/api/user", {
+          let response = await fetch("http://127.0.0.1:3001/api/private", {
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${store.token}`,
@@ -62,7 +62,6 @@ const getState = ({ getStore, getActions, setStore }) => {
           if (response.ok) {
             let data = await response.json();
             setStore({ users: data });
-            // setAllUser(data);
           }
         } catch (error) {
           console.log("error" + error);
