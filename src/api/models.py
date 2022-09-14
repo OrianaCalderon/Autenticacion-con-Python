@@ -8,9 +8,7 @@ class User(db.Model):
     password = db.Column(db.String(200), unique=False, nullable=False)
     salt = db.Column(db.String(80), unique=False, nullable=False)
 
-    # def __init__(self, eail, password, salt):
-    #     pass
-
+    
     def __repr__(self):
         return f'<User {self.email}>'
 
